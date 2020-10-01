@@ -1,0 +1,167 @@
+// Margin & Padding
+.mt {
+    &-10 {
+        margin-top: $mt-10;
+    }
+}
+
+// Color & Background
+.base {
+    &-text {
+        &-white {
+            color: #ffffff !important;
+        }
+
+        &-gray {
+            color: #718096 !important;
+        }
+
+        &-red {
+            color: #E53E3E !important;
+        }
+
+        &-orange {
+            color: #DD6B20 !important;
+        }
+
+        &-yellow {
+            color: #D69E2E !important;
+        }
+
+        &-green {
+            color: #38A169 !important;
+        }
+
+        &-teal {
+            color: #319795 !important;
+        }
+
+        &-blue {
+            color: #3182CE !important;
+        }
+
+        &-indigo {
+            color: #5A67D8 !important;
+        }
+
+        &-purple {
+            color: #b626df !important;
+        }
+
+        &-pink {
+            color: #D53F8C !important;
+        }
+    }
+
+    &-bg {
+        &-white {
+            background-color: #ffffff !important;
+        }
+
+        &-gray {
+            background-color: #718096 !important;
+        }
+
+        &-red {
+            background-color: #E53E3E !important;
+        }
+
+        &-orange {
+            background-color: #DD6B20 !important;
+        }
+
+        &-yellow {
+            background-color: #D69E2E !important;
+        }
+
+        &-green {
+            background-color: #38A169 !important;
+        }
+
+        &-teal {
+            background-color: #319795 !important;
+        }
+
+        &-blue {
+            background-color: #3182CE !important;
+        }
+
+        &-indigo {
+            background-color: #5A67D8 !important;
+        }
+
+        &-purple {
+            background-color: #b626df !important;
+
+            &:hover {
+                background-color: #9608bd !important;
+            }
+        }
+
+        &-pink {
+            background-color: #D53F8C !important;
+        }
+    }
+}
+
+// Outline & Shadow
+.outline {
+    &-none {
+        outline: none;
+
+        &:focus,
+        &:active {
+            outline: none;
+        }
+    }
+}
+
+.shadow {
+    &-none {
+        box-shadow: none;
+
+        &:focus,
+        &:active {
+            box-shadow: none;
+        }
+    }
+}
+
+// Lists
+.list {
+    &-none {
+        list-style: none;
+        padding-left: 1.5rem;
+    }
+}
+
+// Buttons & Input
+.btn {
+
+    &:focus,
+    &:active,
+    &:visited {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+.jascom {
+    &-input {
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid gainsboro;
+
+        &:focus,
+        &:active {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+}
+
+// Loader
+.loader {
+    width: 30px;
+    height: 30px;
+}
