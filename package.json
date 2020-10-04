@@ -26,8 +26,11 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.14.0",
         "@tailwindcss/ui": "^0.6.2",
+        "dotenv": "^8.2.0",
         "node-pace-progress": "^1.0.3",
+        "particles.js": "^2.0.0",
         "tailwindcss": "^1.8.10",
+        "tiny-slider": "^2.9.3",
         "vue-router": "^3.4.5",
         "vue-top-progress": "^0.7.0"
     }

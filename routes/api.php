@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Json for mix
+Route::group(['prefix' => env('MIX_MY_KEYGEN'), 'namespace' => 'Api'], function () {
+    Route::get('get/jasa', 'ApiController@jasaApi');
+});

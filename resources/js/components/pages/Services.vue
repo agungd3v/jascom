@@ -1,99 +1,32 @@
 <template>
   <div class="row justify-content-center">
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mt-3">
+    <div
+      v-for="service in services"
+      :key="service.data"
+      class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mt-3"
+    >
       <div class="card pricing position-relative">
         <div class="card-body">
           <div class="text-center">
-            <p class="text-muted">Portfolio Website</p>
-            <h1 class="mt-3">1,5 juta</h1>
+            <p class="text-muted">{{ service.service_name }}</p>
+            <h1 class="mt-3">{{ service.budget }}</h1>
           </div>
           <hr />
           <ul class="list-group">
-            <li class="list-group-item border-0 py-1">
+            <li
+              v-for="item in service.item"
+              :key="item.item"
+              class="list-group-item border-0 py-1"
+            >
               <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Termasuk .com</span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Termasuk perlindungan https</span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Fitur <strong>statis</strong></span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Penyimpanan <strong>terbatas</strong></span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Bantuan <strong>Senin - Jum'at</strong></span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Pengajuan perubahan konten</span>
+              <span>{{ item.item_name }}</span>
             </li>
           </ul>
           <hr />
           <button
             type="button"
             class="btn btn-block base-bg-purple base-text-white"
-            v-on:click="portfolio"
-            data-toggle="modal"
-            data-target="#pricing"
-          >
-            Pesan Sekarang
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mt-3">
-      <div class="card pricing position-relative">
-        <div class="card-body">
-          <div class="text-center">
-            <p class="text-muted">Company Profile</p>
-            <h1 class="mt-3">5,5 juta</h1>
-          </div>
-          <hr />
-          <ul class="list-group">
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Termasuk .com</span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Termasuk perlindungan https</span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Termasuk manajemen konten</span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Fitur <strong>dinamis</strong></span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span><strong>Pengajuan fitur dari anda</strong></span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Penyimpanan <strong>tidak terbatas</strong></span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Bantuan <strong>24/7</strong></span>
-            </li>
-            <li class="list-group-item border-0 py-1">
-              <i class="fa fa-check mr-2 base-text-purple"></i>
-              <span>Pemeliharaan sistem oleh kami</span>
-            </li>
-          </ul>
-          <hr />
-          <button
-            type="button"
-            class="btn btn-block base-bg-purple base-text-white"
-            v-on:click="company"
+            v-on:click="orderCode = service.id"
             data-toggle="modal"
             data-target="#pricing"
           >
@@ -218,20 +151,16 @@ export default {
       // Loader
       loader: require("../assets/loader.gif"),
       waiting: false,
+      // Mix key
+      mixKey: process.env.MIX_MY_KEYGEN,
+      // Services
+      services: null,
     };
   },
-  mounted() {},
+  mounted() {
+    this.getService(this.mixKey);
+  },
   methods: {
-    portfolio() {
-      if (this.orderCode != 1) {
-        this.orderCode = 1;
-      }
-    },
-    company() {
-      if (this.orderCode != 2) {
-        this.orderCode = 2;
-      }
-    },
     order() {
       if (this.waiting == false) {
         this.waiting = true;
@@ -251,6 +180,18 @@ export default {
             console.log(err);
           });
       }
+    },
+    getService(key) {
+      axios
+        .get(`api/${key}/get/jasa`)
+        .then((res) => {
+          if (res.status == 200) {
+            this.services = res.data;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

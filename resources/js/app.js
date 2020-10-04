@@ -1,40 +1,33 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
-window._ = require('lodash');
 
 window.pace = require('node-pace-progress');
-window.pace.start();
-window.axios = require('axios');
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 window.Vue = require('vue');
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('header-vue', require('./components/Header').default)
+window.pace.start();
 
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
+Vue.component('content-v', require('./components/Main').default);
 
-import Index from './components/pages/Index'
-import Services from './components/pages/Services'
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
 
-const routes = [{
-    path: '/',
-    component: Index
-}, {
-    path: '/jasa',
-    component: Services
-}]
+import Index from './components/pages/Index';
+import Services from './components/pages/Services';
+import Reference from './components/pages/Reference';
 
 const router = new VueRouter({
-    routes
+    mode: 'history',
+    base: '/',
+    routes: [{
+        path: '/',
+        component: Index
+    }, {
+        path: '/jasa',
+        component: Services
+    }, {
+        path: '/reference/unique-slugs',
+        component: Reference
+    }]
 })
-
 const app = new Vue({
     router
 }).$mount('#app')

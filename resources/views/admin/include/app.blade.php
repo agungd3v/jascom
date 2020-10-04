@@ -354,7 +354,7 @@
               <li class="@yield('components-active')">
                 <a href="#" @yield('components-expanded')>
                   <i class="metismenu-icon pe-7s-coffee"></i>
-                  Blogging
+                  Coffee
                   <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
                 <ul class="@yield('components-collapse')">
@@ -365,9 +365,9 @@
                     </a>
                   </li>
                   <li>
-                    <a href="elements-dropdowns.html">
+                    <a href="{{ route('admin.service') }}" class="@yield('service-active')">
                       <i class="metismenu-icon"></i>
-                      Posts
+                      Services
                     </a>
                   </li>
                 </ul>

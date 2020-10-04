@@ -4,10 +4,12 @@ namespace App\Category;
 
 class CategoryRepository
 {
+
   public function getCategory()
   {
     return Category::all();
   }
+
   public function saveCategory($req)
   {
     $data = Category::create([
