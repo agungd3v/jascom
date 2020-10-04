@@ -59,7 +59,6 @@
               type="button"
               class="close outline-none"
               data-dismiss="modal"
-              aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -86,7 +85,7 @@
                     Nomor Telepon
                   </label>
                   <input
-                    type="text"
+                    type="number"
                     id="no_tlp"
                     v-model="phoneNumber"
                     class="form-control jascom-input"
@@ -99,7 +98,7 @@
                     Email
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     id="email"
                     v-model="emailAddress"
                     class="form-control jascom-input"
@@ -129,6 +128,7 @@
               type="button"
               v-on:click="order"
               class="btn btn-block base-bg-purple base-text-white"
+              :disabled="isDisabled == true"
             >
               Pesan
             </button>
@@ -142,6 +142,8 @@
 export default {
   data() {
     return {
+      // Disabled after click
+      isDisabled: false,
       // Order
       orderCode: null,
       fullName: null,
@@ -164,6 +166,8 @@ export default {
     order() {
       if (this.waiting == false) {
         this.waiting = true;
+        this.isDisabled = true;
+        pace.start();
         axios
           .post("/order-proccess", {
             nama: this.fullName,
@@ -173,8 +177,17 @@ export default {
             order: this.orderCode,
           })
           .then((result) => {
-            this.waiting = false;
-            console.log(result);
+            if (result.status == 200) {
+              this.waiting = false;
+              $("#pricing").modal("toggle");
+              this.$router.push({ path: "/" });
+              setTimeout(() => {
+                this.flash("Terimakasih telah memesan jasa kami", "success", {
+                  timeout: 5000,
+                  important: true,
+                });
+              }, 500);
+            }
           })
           .catch((err) => {
             console.log(err);

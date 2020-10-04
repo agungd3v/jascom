@@ -55,6 +55,7 @@
 <body class="bg-transparent">
   <div id="content"></div>
   <div id="app">
+    <flash-message class="flashpool"></flash-message>
     <content-v></content-v>
   </div>
 </body>

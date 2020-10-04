@@ -9,6 +9,9 @@ Vue.component('content-v', require('./components/Main').default);
 
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
+import VueFlashMessage from "vue-flash-message";
+Vue.use(VueFlashMessage);
+require("vue-flash-message/dist/vue-flash-message.min.css");
 
 import Index from './components/pages/Index';
 import Services from './components/pages/Services';
